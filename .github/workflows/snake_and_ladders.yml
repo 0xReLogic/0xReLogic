@@ -8,11 +8,9 @@ jobs:
   play_game:
     runs-on: ubuntu-latest
     if: contains(github.event.issue.title, 'Ular Tangga: Lempar Dadu')
-    
     permissions:
       issues: write
       contents: write
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
