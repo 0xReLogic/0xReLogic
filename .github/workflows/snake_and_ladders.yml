@@ -6,11 +6,9 @@ on:
 
 jobs:
   play_game:
-    # Jalankan job ini HANYA jika judul issue mengandung frasa yang tepat
-    if: contains(github.event.issue.title, 'Ular Tangga: Lempar Dadu')
     runs-on: ubuntu-latest
+    if: contains(github.event.issue.title, 'Ular Tangga: Lempar Dadu')
     
-    # Berikan izin untuk menulis ke issues dan contents (kode)
     permissions:
       issues: write
       contents: write
