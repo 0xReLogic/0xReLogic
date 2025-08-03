@@ -1,0 +1,36 @@
+name: Ular Tangga Game
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  play_game:
+    if: contains(github.event.issue.title, 'Ular Tangga: Lempar Dadu')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Run game logic
+        id: game
+        run: python game_logic.py
+
+      - name: Close the issue
+        uses: peter-evans/close-issue@v2
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          comment: Dadu telah dilempar! Pion Anda bergerak. Cek profil Anda untuk melihat posisi baru.
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'GitHub Actions Bot'
+          git config --global user.email 'actions-bot@github.com'
+          git add -A
+          git commit -m "Game Update: Pion bergerak ke posisi ${{ steps.game.outputs.new_position }}" || echo "No changes to commit"
+          git push
