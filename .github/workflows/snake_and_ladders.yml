@@ -6,8 +6,15 @@ on:
 
 jobs:
   play_game:
-    if: ${{ contains(github.event.issue.title, 'Ular Tangga: Lempar Dadu') }}
+    # Jalankan job ini HANYA jika judul issue mengandung frasa yang tepat
+    if: contains(github.event.issue.title, 'Ular Tangga: Lempar Dadu')
     runs-on: ubuntu-latest
+    
+    # Berikan izin untuk menulis ke issues dan contents (kode)
+    permissions:
+      issues: write
+      contents: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -31,6 +38,6 @@ jobs:
         run: |
           git config --global user.name 'GitHub Actions Bot'
           git config --global user.email 'actions-bot@github.com'
-          git add -A
+          git add game_board.svg game_state.txt
           git commit -m "Game Update: Pion bergerak ke posisi ${{ steps.game.outputs.new_position }}" || echo "No changes to commit"
           git push
