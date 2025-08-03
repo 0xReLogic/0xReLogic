@@ -6,7 +6,7 @@ on:
 
 jobs:
   play_game:
-    if: contains(github.event.issue.title, 'Ular Tangga: Lempar Dadu')
+        if: ${{ contains(github.event.issue.title, 'Ular Tangga: Lempar Dadu') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
