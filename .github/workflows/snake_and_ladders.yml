@@ -7,7 +7,7 @@ on:
 jobs:
   play_game:
     runs-on: ubuntu-latest
-    if: contains(github.event.issue.title, 'Ular Tangga: Lempar Dadu')
+    if: ${{ contains(github.event.issue.title, 'Ular Tangga: Lempar Dadu') }}
     permissions:
       issues: write
       contents: write
