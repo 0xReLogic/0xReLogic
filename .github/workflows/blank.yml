@@ -14,15 +14,20 @@ jobs:
     steps:
       - uses: lowlighter/metrics@latest
         with:
-          # Use the Actions-provided token to avoid fine‑grained PAT errors
-          # If you need org/user/package or private-repo data and GITHUB_TOKEN lacks the scopes,
-          # create a classic personal access token (see notes below) and set it to METRICS_TOKEN.
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # Your GitHub token
+          # The following scopes are required:
+          #  - public_access (default scope)
+          # The following additional scopes may be required:
+          #  - read:org      (for organization related metrics)
+          #  - read:user     (for user related data)
+          #  - read:packages (for some packages related data)
+          #  - repo          (optional, if you want to include private repositories)
+          token: ${{ secrets.METRICS_TOKEN }}
 
           # Options
           user: 0xrelogic
           template: classic
-          base: header, activity, community, repositories, metadata
+          base: header, activity, repositories, metadata
           config_timezone: Asia/Makassar
           plugin_activity: yes
           plugin_activity_days: 14
@@ -60,10 +65,4 @@ jobs:
           plugin_lines_history_limit: 1
           plugin_lines_repositories_limit: 4
           plugin_lines_sections: base
-          plugin_reactions: yes
-          plugin_reactions_display: absolute
-          plugin_reactions_limit: 200
-          plugin_reactions_limit_discussions: 100
-          plugin_reactions_limit_discussions_comments: 100
-          plugin_reactions_limit_issues: 100
           plugin_support: yes
