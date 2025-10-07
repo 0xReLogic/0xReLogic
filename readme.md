@@ -58,7 +58,6 @@ and clean architecture.
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=grafana" height="40" alt="grafana logo"  />
 </div>
-###
 
 <div align="center">
   <a href="https://www.linkedin.com/in/allenelzayn/" target="_blank">
