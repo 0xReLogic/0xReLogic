@@ -4,7 +4,7 @@
 
 ###
 
-<p align="left">**System Architect** | 8+ years building scalable systems</p>
+<p align="left">Hi, I'm Allen 👋<br><br>System Architect with 8 years of experience designing and building <br>scalable distributed systems. Passionate about performance, reliability, <br>and clean architecture.</p>
 
 ###
 
