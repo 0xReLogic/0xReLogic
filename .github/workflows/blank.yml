@@ -1,62 +1,33 @@
-# Visit https://github.com/lowlighter/metrics#-documentation for full reference
-name: Metrics
+name: Generate pacman animation
+
 on:
-  # Schedule updates (each hour)
-  schedule: [{cron: "0 * * * *"}]
-  # Lines below let you run workflow manually and on each commit
+  schedule: # execute every 12 hours
+    - cron: "* */12 * * *"
+
   workflow_dispatch:
-  push: {branches: ["master", "main"]}
+
+  push:
+    branches:
+    - main
+
 jobs:
-  github-metrics:
-    runs-on: ubuntu-latest
+  generate:
     permissions:
       contents: write
-    steps:
-      - uses: lowlighter/metrics@latest
-        with:
-          # Use the Actions-provided token to avoid fine‑grained PAT errors
-          # If you need org/user/package or private-repo data and GITHUB_TOKEN lacks the scopes,
-          # create a classic personal access token (see notes below) and set it to METRICS_TOKEN.
-          token: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
 
-          # Options
-          user: 0xrelogic
-          template: classic
-          base: header, activity, community, repositories, metadata
-          config_timezone: Asia/Makassar
-          plugin_activity: yes
-          plugin_activity_days: 14
-          plugin_activity_filter: all
-          plugin_activity_limit: 5
-          plugin_activity_load: 300
-          plugin_activity_visibility: all
-          plugin_followup: yes
-          plugin_followup_archived: yes
-          plugin_followup_indepth: yes
-          plugin_followup_sections: repositories
-          plugin_habits: yes
-          plugin_habits_charts_type: classic
-          plugin_habits_days: 14
-          plugin_habits_facts: yes
-          plugin_habits_from: 200
-          plugin_habits_languages_limit: 8
-          plugin_habits_languages_threshold: 0%
-          plugin_introduction: yes
-          plugin_introduction_title: yes
-          plugin_isocalendar: yes
-          plugin_isocalendar_duration: half-year
-          plugin_languages: yes
-          plugin_languages_analysis_timeout: 15
-          plugin_languages_analysis_timeout_repositories: 7.5
-          plugin_languages_categories: markup, programming
-          plugin_languages_colors: github
-          plugin_languages_limit: 8
-          plugin_languages_recent_categories: markup, programming
-          plugin_languages_recent_days: 14
-          plugin_languages_recent_load: 300
-          plugin_languages_sections: most-used
-          plugin_languages_threshold: 0%
-          plugin_lines: yes
-          plugin_lines_history_limit: 1
-          plugin_lines_repositories_limit: 4
-          plugin_lines_sections: base
+    steps:
+      - name: generate pacman-contribution-graph.svg
+        uses: abozanona/pacman-contribution-graph@main
+        with:
+          github_user_name: ${{ github.repository_owner }}
+
+
+      - name: push pacman-contribution-graph.svg to the output branch
+        uses: crazy-max/ghaction-github-pages@v3.1.0
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
