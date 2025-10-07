@@ -4,11 +4,13 @@
 
 ###
 
+<br clear="both">
+
 <p align="left">Hi, I'm Allen 👋<br><br>System Architect with 8 years of experience designing and building <br>scalable distributed systems. Passionate about performance, reliability, <br>and clean architecture.</p>
 
 ###
 
-<div align="center">
+<div align="left">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg" height="40" alt="rust logo"  />
   <img width="12" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="40" alt="python logo"  />
