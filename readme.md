@@ -2,8 +2,7 @@
 
 ### Hi, I'm Allen 👋
 
-System Architect with 8 years of experience designing and building 
-scalable distributed systems. Passionate about performance, reliability, 
+Passionate about performance, reliability, 
 and clean architecture.
 
 <br clear="both">
